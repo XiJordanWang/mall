@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <ul>
+            <!-- 1.显示user信息： v-for="item in items"-->
+            <li v-for="user in users" :key="user.name">
+                {{user.name}},{{user.gender}},{{user.age}}<br>
+                <!-- 3.遍历对象：
+                    v-for="value in object" 
+                    v-for="(value,key) in object" 
+                    v-for="(value,key,index) in object" -->
+                对象信息：
+                <span v-for="(v, k) in user">{{k}}:{{v}}</span>
+            </li>
+            <!-- 4.遍历的时候都加上：key来区分不同的数据，提高vue渲染效率 -->
+        </ul>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                users: [
+                    { name: "明日花绮罗", gender: '女', age: 31 },
+                    { name: "三上悠亚", gender: '女', age: 28 },
+                    { name: "桃乃木香奈", gender: '女', age: 26 },
+                    { name: "桥本有菜", gender: '女', age: 26 },
+                    { name: "波多野结衣", gender: '女', age: 33 },
+                ],
+            }
+        })
+    </script>
+</body>
+
+</html>
