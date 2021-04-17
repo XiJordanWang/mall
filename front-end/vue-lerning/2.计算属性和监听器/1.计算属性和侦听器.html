@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 某些结果是基于之前数据实时计算出来的，我们可以利用计算属性来完成 -->
+        <ul>
+            <li>西游记；价格：{{xPrice}}，数量：<input type="number" v-model="xNumber"></li>
+            <li>水浒传；价格：{{sPrive}}，数量：<input type="number" v-model="sNumber"></li>
+            <li>总价：{{totalPrice}}</li>
+            <li>{{msg}}</li>
+        </ul>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        // watch 可以让我们监控一个值的变化，从而做出反应。
+        new Vue({
+            el: "#app",
+            data: {
+                xPrice: 99.98,
+                sPrive: 99.80,
+                xNumber: 1,
+                sNumber: 1,
+                msg: ""
+            },
+            // 计算属性
+            computed: {
+                totalPrice() {
+                    return this.xPrice * this.xNumber + this.sPrive * this.sNumber;
+                }
+
+            },
+            watch: {
+                xNumber: function (newVal, OldVal) {
+                    console.log("newVal" + newVal + "   oldVal:" + OldVal);
+                    if (newVal >= 3) {
+                        this.msg = "库存超出限制";
+                        this.xNumber = 3
+                    } else {
+                        this.msg = "";
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
