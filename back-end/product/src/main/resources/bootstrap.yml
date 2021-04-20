@@ -1,0 +1,17 @@
+server:
+  port: 8083
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.56.10:3306/gulimall_pms?serverTimezone=Asia/Shanghai&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 123456
+  application:
+    name: mall-product
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.56.10:8848
+        file-extension: yml
+      discovery:
+        server-addr: 192.168.56.10:8848
