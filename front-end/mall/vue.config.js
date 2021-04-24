@@ -7,7 +7,7 @@ module.exports = {
         openPage: '',
         proxy: {
             '/api': {
-                target: 'http://127.0.0.1:8083',
+                target: 'http://127.0.0.1:9999',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': ''
