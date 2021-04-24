@@ -24,9 +24,7 @@
           >
             <a-sub-menu key="sub1">
               <span slot="title"><a-icon type="user" />subnav 1</span>
-              <a-menu-item key="1">
-                <router-link to="/content">测试 </router-link></a-menu-item
-              >
+              <a-menu-item key="1"> option1 </a-menu-item>
               <a-menu-item key="2"> option2 </a-menu-item>
               <a-menu-item key="3"> option3 </a-menu-item>
               <a-menu-item key="4"> option4 </a-menu-item>
@@ -53,44 +51,37 @@
             <a-breadcrumb-item>List</a-breadcrumb-item>
             <a-breadcrumb-item>App</a-breadcrumb-item>
           </a-breadcrumb>
-          <router-view />
+          <a-layout-content
+            :style="{
+              background: '#fff',
+              padding: '24px',
+              margin: 0,
+              minHeight: '280px',
+            }"
+          >
+            Content
+          </a-layout-content>
         </a-layout>
       </a-layout>
     </a-layout>
   </div>
 </template>
-
 <script>
 export default {
-  beforeCreate() {
-    this.axios
-      .get("/product/category/treeList")
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  },
-  components: {},
-  methods: {
-    buttonClick() {
-      // window.location.href = "www.baid.com";
-      this.router.push("/main");
-    },
+  data() {
+    return {
+      collapsed: false,
+    };
   },
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  height: 100%;
-  width: 100%;
+#components-layout-demo-top-side-2 .logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 28px 16px 0;
+  float: left;
 }
 </style>
