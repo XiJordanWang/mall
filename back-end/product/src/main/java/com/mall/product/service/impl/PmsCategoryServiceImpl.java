@@ -20,23 +20,23 @@ public class PmsCategoryServiceImpl implements PmsCategoryService {
         return this.getTreeList(pmsCategoryDao.selectList(null));
     }
 
-    private List<PmsCategory> getTreeList(List<PmsCategory> categoryList){
+    private List<PmsCategory> getTreeList(List<PmsCategory> categoryList) {
         return categoryList
                 .stream()
                 .filter(category -> category.getParentCid() == 0)
-                .map(category ->{
-                    this.getChildList(category,categoryList);
+                .map(category -> {
+                    category.setChild(this.getChildList(category, categoryList));
                     return category;
                 })
                 .collect(Collectors.toList());
     }
 
-    private List<PmsCategory> getChildList(PmsCategory root,List<PmsCategory> categoryList){
+    private List<PmsCategory> getChildList(PmsCategory root, List<PmsCategory> categoryList) {
         return categoryList
                 .stream()
                 .filter(category -> category.getParentCid().equals(root.getCatId()))
-                .map(category->{
-                    root.setChild(this.getChildList(category, categoryList));
+                .map(category -> {
+                    category.setChild(this.getChildList(category, categoryList));
                     return category;
                 })
                 .collect(Collectors.toList());
