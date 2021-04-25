@@ -5,6 +5,10 @@ module.exports = {
         https: false,
         open: true,
         openPage: '',
+        overlay: {
+            warnings: false,
+            errors: false
+        },
         proxy: {
             '/api': {
                 target: 'http://127.0.0.1:9999',
