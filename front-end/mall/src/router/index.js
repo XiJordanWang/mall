@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import Main from '../views/Main.vue'
-import Table from '../views/Table.vue'
+// import Table from '../views/Table.vue'
 import category from '../views/product/category.vue'
 
 Vue.use(VueRouter)
@@ -26,13 +26,13 @@ const routes = [
     name: 'Main',
     component: Main,
     children: [
-      { path: '/table', component: Table }
+      {
+        path: '/category',
+        components: {
+          category: category
+        }
+      }
     ]
-  },
-  {
-    path: '/category',
-    name: 'category',
-    component: category
   },
   // {
   //   path: '/table',

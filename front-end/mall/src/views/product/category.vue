@@ -1,13 +1,38 @@
 <template>
-  <a-tree
-    v-model="checkedKeys"
-    :expanded-keys="expandedKeys"
-    :auto-expand-parent="autoExpandParent"
-    :selected-keys="selectedKeys"
-    :tree-data="treeData"
-    @expand="onExpand"
-    @select="onSelect"
-  />
+  <div>
+    <!-- <span>{{ nodeData.title }}</span> -->
+    <a-button-group style="float: right"
+      ><a-button size="small" icon="plus-circle" title="添加同级"></a-button>
+      <a-button size="small" icon="share-alt" title="添加下级"></a-button>
+      <a-button size="small" icon="form" title="修改"></a-button>
+      <a-button size="small" icon="close-circle" title="删除"></a-button
+    ></a-button-group>
+    <a-tree
+      v-model="checkedKeys"
+      :expanded-keys="expandedKeys"
+      :auto-expand-parent="autoExpandParent"
+      :selected-keys="selectedKeys"
+      :tree-data="treeData"
+      @expand="onExpand"
+      @select="onSelect"
+      showLine
+      blockNode
+    >
+      <template v-slot:default="nodeData">
+        <span>{{ nodeData.title }}</span>
+        <a-button-group style="float: right"
+          ><a-button
+            size="small"
+            icon="plus-circle"
+            title="添加同级"
+          ></a-button>
+          <a-button size="small" icon="share-alt" title="添加下级"></a-button>
+          <a-button size="small" icon="form" title="修改"></a-button>
+          <a-button size="small" icon="close-circle" title="删除"></a-button
+        ></a-button-group>
+      </template>
+    </a-tree>
+  </div>
 </template>
 
 <script>
