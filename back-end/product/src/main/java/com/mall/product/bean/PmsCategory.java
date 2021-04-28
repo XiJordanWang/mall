@@ -3,7 +3,9 @@ package com.mall.product.bean;
 import java.io.Serializable;
 import java.util.List;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 /**
@@ -15,6 +17,7 @@ public class PmsCategory implements Serializable {
     /**
      * 分类id
      */
+    @TableId(type = IdType.AUTO)
     private Long catId;
 
     /**

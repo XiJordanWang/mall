@@ -1,12 +1,5 @@
 <template>
   <div>
-    <!-- <span>{{ nodeData.title }}</span> -->
-    <a-button-group style="float: right"
-      ><a-button size="small" icon="plus-circle" title="添加同级"></a-button>
-      <a-button size="small" icon="share-alt" title="添加下级"></a-button>
-      <a-button size="small" icon="form" title="修改"></a-button>
-      <a-button size="small" icon="close-circle" title="删除"></a-button
-    ></a-button-group>
     <a-tree
       v-model="checkedKeys"
       :expanded-keys="expandedKeys"
@@ -14,13 +7,11 @@
       :selected-keys="selectedKeys"
       :tree-data="treeData"
       @expand="onExpand"
-      @select="onSelect"
       showLine
-      blockNode
     >
-      <template v-slot:default="nodeData">
+      <template v-slot:title="nodeData">
         <span>{{ nodeData.title }}</span>
-        <a-button-group style="float: right"
+        <a-button-group style="margin-left: 200px; float: right"
           ><a-button
             size="small"
             icon="plus-circle"
@@ -28,7 +19,12 @@
           ></a-button>
           <a-button size="small" icon="share-alt" title="添加下级"></a-button>
           <a-button size="small" icon="form" title="修改"></a-button>
-          <a-button size="small" icon="close-circle" title="删除"></a-button
+          <a-button
+            size="small"
+            @click="del(nodeData.key)"
+            icon="close-circle"
+            title="删除"
+          ></a-button
         ></a-button-group>
       </template>
     </a-tree>
@@ -67,10 +63,10 @@ export default {
       console.log("onCheck", checkedKeys);
       this.checkedKeys = checkedKeys;
     },
-    onSelect(selectedKeys, info) {
-      console.log("onSelect", info);
-      this.selectedKeys = selectedKeys;
-    },
+    // onSelect(selectedKeys, info) {
+    //   console.log("onSelect", info);
+    //   this.selectedKeys = selectedKeys;
+    // },
     setTreeData: function () {
       this.axios.get("product/category/treeList").then((response) => {
         console.log(response.data);
@@ -85,6 +81,9 @@ export default {
         let newTree = {
           title: node.name,
           key: node.catId,
+          scopedSlots: {
+            title: "title",
+          },
         };
         if (node.child != null) {
           newTree.children = this.getTreeList(node.child);
@@ -92,6 +91,23 @@ export default {
         treeList.push(newTree);
       });
       return treeList;
+    },
+    del: function (id) {
+      console.log(id);
+      this.axios.get("product/category/canDel/" + id).then((response) => {
+        if (response.data.data) {
+          this.axios.delete("product/category/del/" + id).then((response) => {
+            if (response.data.code == 200) {
+              alert("删除成功！");
+              this.router.go(0);
+            } else {
+              alert("删除失败！");
+            }
+          });
+        } else {
+          alert("很抱歉，该节点有子节点，不能删除！");
+        }
+      });
     },
   },
 };

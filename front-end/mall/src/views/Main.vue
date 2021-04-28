@@ -30,7 +30,9 @@
             <a-sub-menu key="sub1">
               <span slot="title"><a-icon type="user" />商品系统</span>
               <a-menu-item key="1">
-                <router-link name="content" to="/category">菜单管理</router-link>
+                <router-link name="content" to="/main/category"
+                  >菜单管理</router-link
+                >
               </a-menu-item>
               <a-menu-item key="2"> option2 </a-menu-item>
               <a-menu-item key="3"> option3 </a-menu-item>
@@ -53,7 +55,7 @@
           </a-menu>
         </a-layout-sider>
         <a-layout-content :style="{ padding: '0 24px', minHeight: '280px' }">
-          <router-view name="category" />
+          <router-view />
         </a-layout-content>
       </a-layout>
     </a-layout-content>

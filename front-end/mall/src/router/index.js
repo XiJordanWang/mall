@@ -27,10 +27,8 @@ const routes = [
     component: Main,
     children: [
       {
-        path: '/category',
-        components: {
-          category: category
-        }
+        path: 'category',
+        component: category
       }
     ]
   },
