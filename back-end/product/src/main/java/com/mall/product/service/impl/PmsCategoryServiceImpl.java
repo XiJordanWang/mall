@@ -39,8 +39,8 @@ public class PmsCategoryServiceImpl implements PmsCategoryService {
     }
 
     @Override
-    public void update() {
-
+    public void update(PmsCategory category) {
+        pmsCategoryDao.updateById(category);
     }
 
     @Override

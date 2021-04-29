@@ -1,6 +1,7 @@
 package com.mall.product.controller;
 
 import com.mall.common.bean.ResponseResult;
+import com.mall.product.bean.PmsCategory;
 import com.mall.product.dto.CategoryAddDto;
 import com.mall.product.service.PmsCategoryService;
 import org.springframework.web.bind.annotation.*;
@@ -54,6 +55,22 @@ public class PmsCategoryController {
     @PostMapping("/add")
     public ResponseResult<?> add(@RequestBody CategoryAddDto dto) {
         pmsCategoryService.add(dto);
+        return ResponseResult
+                .builder()
+                .code(200)
+                .msg("success")
+                .build();
+    }
+
+    /**
+     * 修改
+     *
+     * @param category
+     * @return
+     */
+    @PutMapping("/update")
+    public ResponseResult<?> update(@RequestBody PmsCategory category) {
+        pmsCategoryService.update(category);
         return ResponseResult
                 .builder()
                 .code(200)

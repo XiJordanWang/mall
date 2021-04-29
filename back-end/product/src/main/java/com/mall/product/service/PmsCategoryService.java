@@ -13,7 +13,7 @@ public interface PmsCategoryService {
 
     void add(CategoryAddDto dto);
 
-    void update();
+    void update(PmsCategory category);
 
     void del(String id);
 }
