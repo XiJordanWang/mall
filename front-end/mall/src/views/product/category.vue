@@ -41,9 +41,9 @@
     </a-tree>
     <div>
       <a-modal v-model="visible" :title="modalTitle" @ok="handleOk">
-        <a-input :value="title" placeholder="标题" />
-        <a-input :value="parentCid" style="display: none" />
-        <a-input :value="catLevel" style="display: none" />
+        <a-input v-model="title" :value="title" placeholder="标题" />
+        <a-input v-model="parentCid" :value="parentCid" style="display: none" />
+        <a-input v-model="catLevel" :value="catLevel" style="display: none" />
       </a-modal>
     </div>
   </div>
@@ -122,8 +122,16 @@ export default {
     showModal() {
       this.visible = true;
     },
+    init() {
+      type = 1;
+      this.id = null;
+      this.title = null;
+      this.parentCid = null;
+      this.catLevel = null;
+    },
     addSameCategory(category) {
       console.log(category);
+      this.init();
       this.modalTitle = "添加同级菜单";
       this.visible = true;
       this.parentCid = category.parentCid;
@@ -131,6 +139,7 @@ export default {
     },
     addNextCategory(category) {
       console.log(category);
+      this.init();
       this.modalTitle = "添加下一级菜单";
       this.visible = true;
       this.parentCid = category.key;
@@ -138,6 +147,7 @@ export default {
     },
     updateCategory(category) {
       console.log(category);
+      this.init();
       type = 2;
       this.modalTitle = "修改菜单";
       this.visible = true;
