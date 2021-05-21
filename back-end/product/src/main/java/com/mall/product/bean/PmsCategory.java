@@ -18,7 +18,7 @@ public class PmsCategory implements Serializable {
      * 分类id
      */
     @TableId(type = IdType.AUTO)
-    private Long catId;
+    private Long id;
 
     /**
      * 分类名称
@@ -28,17 +28,17 @@ public class PmsCategory implements Serializable {
     /**
      * 父分类id
      */
-    private Long parentCid;
-
-    /**
-     * 层级
-     */
-    private Integer catLevel;
+    private Long parentId;
+//
+//    /**
+//     * 层级
+//     */
+//    private Integer catLevel;
 
     /**
      * 是否显示[0-不显示，1显示]
      */
-    private Byte showStatus;
+    private Byte status;
 
     /**
      * 排序
@@ -53,12 +53,12 @@ public class PmsCategory implements Serializable {
     /**
      * 计量单位
      */
-    private String productUnit;
+    private String unit;
 
-    /**
-     * 商品数量
-     */
-    private Integer productCount;
+//    /**
+//     * 商品数量
+//     */
+//    private Integer productCount;
 
     @TableField(exist = false)
     private List<PmsCategory> child;

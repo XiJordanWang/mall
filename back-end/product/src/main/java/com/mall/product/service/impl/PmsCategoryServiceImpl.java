@@ -51,7 +51,7 @@ public class PmsCategoryServiceImpl implements PmsCategoryService {
     private List<PmsCategory> getTreeList(List<PmsCategory> categoryList) {
         return categoryList
                 .stream()
-                .filter(category -> category.getParentCid() == 0)
+                .filter(category -> category.getParentId() == 0)
                 .map(category -> {
                     category.setChild(this.getChildList(category, categoryList));
                     return category;
@@ -62,7 +62,7 @@ public class PmsCategoryServiceImpl implements PmsCategoryService {
     private List<PmsCategory> getChildList(PmsCategory root, List<PmsCategory> categoryList) {
         return categoryList
                 .stream()
-                .filter(category -> category.getParentCid().equals(root.getCatId()))
+                .filter(category -> category.getParentId().equals(root.getId()))
                 .map(category -> {
                     category.setChild(this.getChildList(category, categoryList));
                     return category;
