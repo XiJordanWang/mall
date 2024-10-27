@@ -21,11 +21,3 @@ This repository hosts the frontend for **Atguigu E-commerce**, a comprehensive e
 - **API Communication**: Axios for HTTP requests
 - **Other Libraries**: Swiper for product carousels, Qs for query string parsing
 
-## Project Setup
-
-To run this project locally, follow these steps:
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/your-username/atguigu-ecommerce-frontend.git
-   cd atguigu-ecommerce-frontend
